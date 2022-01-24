@@ -1,5 +1,14 @@
 //IIFE
 let pokemonRepository = (function(){
+
+  let pokemonList = [
+  {name:'Charmander', height:0.6, types: ['Fire']},
+  {name:'Squirtle', height:0.4, types:['water']},
+  {name:'Balbasour', height:0.7, types:['Grass,Posion']},
+  {name: 'Golbat', height:1.6, types: ['Flying','Posion']},
+  {name:'Alakazam', height:1.5, types:['physic']},
+];
+  let pokemonTypes = ['Fire','Water','Grass','Posion','Flying','Physic'
 ];
  
 //Function to add pokemon to list
