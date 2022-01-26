@@ -50,6 +50,15 @@ let pokemonRepository = (function(){
     listpokemon.appendChild(button);
     //adding ?????
     pokemonList.appendChild(listpokemon);
+    //when button is clicked it will prompt showDetails function
+    button.addEventListener('click', function(){
+      showDetails(pokemon);
+    });
+   } 
+   // function that will give the details of the pokemon to console log 
+    function showDetails(pokemon){
+      console.log(pokemon);
+  }
   return{
     add: add,
     getAll: getAll,
