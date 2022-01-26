@@ -63,9 +63,9 @@ let pokemonRepository = (function(){
   return{
     add: add,
     getAll: getAll,
-    searchPokemon: searchPokemon
+    searchPokemon: searchPokemon,
+    addListItem: addListItem
   };
-
 })();
 
 //calling searchPokemon function to console
@@ -77,8 +77,6 @@ pokemonRepository.add({name:'Pikachu', height: '0.4', types: 'Fire'});
 //calling getAll function to show all pokemon in the list 
 console.log(pokemonRepository.getAll());
 
-pokemonRepository.getAll().forEach(function(pokemon) {
-    document.write('<p>' + pokemon.name + ' is ' +    pokemon.height + ' tall, and is ' +             pokemon.types + ' type!' + '</p>');
 //calling the function addListItem to generate buttons for each
 // pokemon on the list, that shows additonal details. As well as
 //pushing them to the HTML page
