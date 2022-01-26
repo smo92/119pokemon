@@ -16,9 +16,9 @@ let pokemonRepository = (function(){
     //validating it is an object
         if(typeof newPokemon === 'object' && !Array.isArray(newPokemon)){
          //validating that it use object keys expected
-          if (Object.keys(newPokemon)[0] === 'name' &&
-              Object.keys(newPokemon)[1] ==='height' && 
-              Object.keys(newPokemon)[2] === 'types'){
+        if (Object.keys(newPokemon)[0] === 'name' &&
+            Object.keys(newPokemon)[1] ==='height' && 
+            Object.keys(newPokemon)[2] === 'types'){
 
         pokemonRepo.push(newPokemon);  
       }
