@@ -82,5 +82,7 @@ pokemonRepository.getAll().forEach(function(pokemon) {
 //calling the function addListItem to generate buttons for each
 // pokemon on the list, that shows additonal details. As well as
 //pushing them to the HTML page
+pokemonRepository.getAll().forEach(function (pokemon) {
+  pokemonRepository.addListItem(pokemon);
 
   });
