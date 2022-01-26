@@ -59,6 +59,7 @@ let pokemonRepository = (function(){
     function showDetails(pokemon){
       console.log(pokemon);
   }
+  // the returns for each function in the IIFE
   return{
     add: add,
     getAll: getAll,
@@ -67,12 +68,19 @@ let pokemonRepository = (function(){
 
 })();
 
+//calling searchPokemon function to console
 console.log(pokemonRepository.searchPokemon('Squirtle'));
 
+//calling add function to add new pokemon to pokeRepo
 pokemonRepository.add({name:'Pikachu', height: '0.4', types: 'Fire'});
+
+//calling getAll function to show all pokemon in the list 
 console.log(pokemonRepository.getAll());
 
 pokemonRepository.getAll().forEach(function(pokemon) {
     document.write('<p>' + pokemon.name + ' is ' +    pokemon.height + ' tall, and is ' +             pokemon.types + ' type!' + '</p>');
+//calling the function addListItem to generate buttons for each
+// pokemon on the list, that shows additonal details. As well as
+//pushing them to the HTML page
 
   });
