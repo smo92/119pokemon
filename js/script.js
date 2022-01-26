@@ -1,7 +1,7 @@
 //IIFE
 let pokemonRepository = (function(){
 
-  let pokemonList = [
+  let pokemonRepo = [
   {name:'Charmander', height:0.6, types: ['Fire']},
   {name:'Squirtle', height:0.4, types:['water']},
   {name:'Balbasour', height:0.7, types:['Grass,Posion']},
@@ -20,18 +20,18 @@ let pokemonRepository = (function(){
               Object.keys(newPokemon)[1] ==='height' && 
               Object.keys(newPokemon)[2] === 'types'){
 
-        pokemonList.push(newPokemon);  
+        pokemonRepo.push(newPokemon);  
       }
     }
   }
   //adding a findPokenmon function to search by name
   function searchPokemon(searchName){
-    let findPokemon = pokemonList.filter (pokemon => pokemon.name === searchName);
-      return findPokemon
+    let findPokemon = pokemonRepo.filter (pokemon => pokemon.name === searchName);
+      return findPokemon;
   }
   //Function to show all pokemon on the list
   function getAll(){
-    return pokemonList;
+    return pokemonRepo;
   }
   //function to add a button for each pokemon that when clicked on
   // will show the details about that pokemon
