@@ -33,6 +33,23 @@ let pokemonRepository = (function(){
   function getAll(){
     return pokemonList;
   }
+  //function to add a button for each pokemon that when clicked on
+  // will show the details about that pokemon
+  function addListItem(pokemon){
+    //call to pokemon-list in html
+    let pokemonList = document.querySelector(".pokemon-list");
+    //creating a list item in pokemon-list
+    let listpokemon = document.createElement("li");
+    //creating a button for each list item
+    let button = document.createElement("button");
+    //making text of button show pokemons name
+    button.innerText = pokemon.name;
+    //adding a class to button to call style from css
+    button.classList.add("button-class");
+    //adding buttons to pokemon-list
+    listpokemon.appendChild(button);
+    //adding ?????
+    pokemonList.appendChild(listpokemon);
   return{
     add: add,
     getAll: getAll,
