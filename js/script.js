@@ -89,6 +89,9 @@ let pokemonRepository = (function () {
     add: add,
     getAll: getAll,
     searchPokemon: searchPokemon,
+    addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails
   };
 })();
 
