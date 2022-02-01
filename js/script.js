@@ -10,6 +10,9 @@ let pokemonRepository = (function(){
 ];
   let pokemonTypes = ['Fire','Water','Grass','Posion','Flying','Physic'
 ];
+let pokemonRepository = (function () {
+  let pokemonRepo = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
  
 //Function to add pokemon to list
   function add(newPokemon){
