@@ -2,14 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name = "description" content="Details of each Pokemon">
     <meta name="viewport" content="width=device-width">
-    <title> Pokedex App</title>
+    
     <link href="css/style.css" rel="stylesheet" type="text/css" />
+
+    <title> Pokedex App</title>
   </head>
   <body>
-
-    <h1>pokedex</h1>
-    <ul class="pokemon-list"></ul>
+    <div class="flex-container">
+      <header>
+        <h1>pokedex</h1>
+      </header>
+      <main>
+        <div id="modal-container"></div>
+        <ul class="pokemon-list"></ul>
+      </main>
+    </div>
+    
 
     <script src = "js/pollyfill-promise.js"></script>
     <script src ="js/pollyfill-fetch.js"></script>
