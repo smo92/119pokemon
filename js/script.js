@@ -76,6 +76,14 @@ let pokemonRepository = (function () {
       console.error(e);
     });
   }
+   function showDetails(pokemon) {
+    loadDetails(pokemon).then(function () {
+      console.log(pokemon);
+    });
+  } 
+
+   // function that will give the details of the pokemon to console log 
+ 
   // the returns for each function in the IIFE
   return{
     add: add,
