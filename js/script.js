@@ -78,11 +78,64 @@ let pokemonRepository = (function () {
   }
    function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-      console.log(pokemon);
+      showModal(pokemon.name, 'Height:' + pokemon.height, pokemon.imageUrl);
     });
   } 
+  //function to show modal with poke details
+  function showModal(title,text,img_src){
+    let modalContainer = document.querySelector('#modal-container');
+    //clear old content
+    modalContainer.innerText = '';
 
-   // function that will give the details of the pokemon to console log 
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    //adding new content to modal
+    let closeButtonElement = document.createElement('button');
+    closeButtonElement.classList.add('modal-close');
+    closeButtonElement.innerText = 'Close';
+
+    //hide modal when closeButton clicked
+    closeButtonElement.addEventListener('click', hideModal);
+
+    let modalTitle = document.createElement('h1');
+    modalTitle.innerText = title;
+
+    let modalContent = document.createElement('p');
+    modalContent.innerText = text;
+
+    let modalImg = document.createElement('img');
+    modalImg.classList.add('modal-img');
+    modalImg.src = img_src;
+
+    modal.appendChild(closeButtonElement);
+    modal.appendChild(modalTitle);
+    modal.appendChild(modalContent);
+    modal.appendChild(modalImg);
+    modalContainer.appendChild(modal);
+    //
+    modalContainer.classList.add('is-visible');
+    //close modal when user clicks outside of window
+    modalContainer.addEventListener('click', (e) => {
+      let target = e.target;
+      if (target === modalContainer){
+        hideModal();
+      }
+    });  
+  }
+
+  //function to hid modal until it is selected
+  function hideModal(){
+    let modalContainer = document.querySelector('#modal-container');
+    modalContainer.classList.remove('is-visible');
+  }
+
+  window.addEventListener('keydown', (e) => {
+    let modalContainer = document.querySelector('#modal-container');
+    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')){
+      hideModal();
+    }
+  });
  
   // the returns for each function in the IIFE
   return{
