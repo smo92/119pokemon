@@ -24,7 +24,7 @@ let pokemonRepository = (function () {
    pokemonRepository.loadDetails(pokemon).then(function() {
      let $row = $(".row");
      let $card = $('<div class= "card" style= "width:30%"></div>');
-     let $img = $('<img class="card-img-top" alt="Card image" style="width:20%" />');
+     let $image = $('<img class="card-img-top" alt="Card image" style="width:20%" />');
     
     $image.attr=("src", pokemon.imageUrlFront);
       let $cardBody = $('<div class= "card-boy"></div>')
@@ -60,8 +60,8 @@ let pokemonRepository = (function () {
     return $.ajax(apiUrl).then(function(json){
       json.results.forEach(function(item){
         let pokemon= {
-          name = item.name,
-          detailsUrl = item.url,
+          name: item.name,
+          detailsUrl: item.url,
         };
         add(pokemon);
         console.log(pokemon);
@@ -73,25 +73,24 @@ let pokemonRepository = (function () {
   }
   //Defining the content in the showDetails function which will be triggered
   // when the seeProfile btn is click
-  function loadDetails(item) {
+  function loadDetails(pokemon) {
     let url= pokemon.detailsUrl;
     return $.ajax(url).then(function(details){
       pokemon.imageUrlFront = details.sprites.front_default;
       pokemon.imageUrlBack = details.sprites.back_default;
       pokemon.height = details.height;
       //loops to show each type and abilities
-      item.types[];
+      pokemon.types=[];
       details.types.forEach(function(i){
-        item.types.push(i.type.name);
+        pokemon.types.push(i.type.name);
       //for (let i = 0; i< details.types.length; i++) {
       //pokemon.types.push(details.types[i].type.name);
       });
 
-      pokemon.abilities[];
-      details.abilities.forEach(function(i){
-        details.abilities.push(i.abilities.name);
+      pokemon.abilities=[];
+      for (let i = 0; i< details.abilities.length; i++) {
+        pokemon.types.push(details.abilities[i].type.name);
       }
-
       pokemon.weight= details.weight;
     })
       .catch(function(e){
