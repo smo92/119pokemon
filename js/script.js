@@ -1,4 +1,3 @@
-//IIFE
 let pokemonRepository = (function () {
   let pokemonRepo = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
@@ -6,122 +5,125 @@ let pokemonRepository = (function () {
 //Function to add pokemon to list
   function add(pokemon) {
     if (
-      typeof pokemon === "object" &&
-      "name" in pokemon
+      typeof pokemon === 'object' &&
+      'name' in pokemon && 'detailsUrl' in pokemon
     ) {
       pokemonRepo.push(pokemon);
     } else {
       console.log("pokemon is not correct");
     }
   }
-  //adding a findPokenmon function to search by name
-  function searchPokemon(searchName){
-    let findPokemon = pokemonRepo.filter (pokemon => pokemon.name === searchName);
-      return findPokemon;
-  }
-  //Function to show all pokemon on the list
+
+//Function to show all pokemon on the list
   function getAll(){
     return pokemonRepo;
   }
-  //function to add a button for each pokemon that when clicked on
-  // will show the details about that pokemon
-  function addListItem(pokemon){
-    //call to pokemon-list in html
-    let pokemonList = document.querySelector(".pokemon-list");
-    //creating a list item in pokemon-list
-    let listpokemon = document.createElement("li");
-    //creating a button for each list item
-    let button = document.createElement("button");
-    //making text of button show pokemons name
-    button.innerText = pokemon.name;
-    //adding a class to button to call style from css
-    button.classList.add("button-class");
-    //adding buttons to pokemon-list
-    listpokemon.appendChild(button);
-    //adding ?????
-    pokemonList.appendChild(listpokemon);
-    //when button is clicked it will prompt showDetails function
-    button.addEventListener('click', function(){
-      showDetails(pokemon);
-    });
-   } 
 
-    function loadList() {
-    return fetch(apiUrl).then(function (response) {
-        return response.json();
-        }).then(function (json) {
-          json.results.forEach(function (item) {
-            let pokemon = {
-              name: item.name,
-              detailsUrl: item.url
-            };
+
+  function addListItem(pokemon){
+   pokemonRepository.loadDetails(pokemon).then(function() {
+     let $row = $(".row");
+     let $card = $('<div class= "card" style= "width:30%"></div>');
+     let $img = $('<img class="card-img-top" alt="Card image" style="width:20%" />');
+    
+    $image.attr=("src", pokemon.imageUrlFront);
+      let $cardBody = $('<div class= "card-boy"></div>')
+      let $cardTitle = $('<h4> class="card-title"> + pokemon.name + </h4>');
+      let $seeProfile = $('<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">See Profile</button>');
+     
+     //creating a card for each pokemon
+     $row.append($card);
+     //apending image to card
+     $card.append($image);
+     //appending content of cardBody
+     $card.append($cardBody);
+     //defining content in cardBody
+     $cardBody.append($cardTitle);
+     //adding a button to show more details
+     $cardBody.append($seeProfile);
+
+     //adding addEventListener (.on) to seeProfile btn is click it will
+     // trigger showDetails function
+     $seeProfile.on('click', function(event){
+       showDetails(pokemon);
+     });
+   });
+  } 
+
+  function showDetails(pokemon) {
+    pokemonRepository.loadDetails(pokemon).then(function(){
+      showModal(pokemon);
+    });
+  }
+
+  function loadList() {
+    return $.ajax(apiUrl).then(function(json){
+      json.results.forEach(function(item){
+        let pokemon= {
+          name = item.name,
+          detailsUrl = item.url,
+        };
         add(pokemon);
         console.log(pokemon);
       });
-    }).catch(function (e) {
-      console.error(e);
     })
-  }
-
-  function loadDetails(item) {
-    let url = item.detailsUrl;
-    return fetch(url).then(function (response) {
-      return response.json();
-    }).then(function (details) {
-      // Now we add the details to the item
-      item.imageUrl = details.sprites.front_default;
-      item.height = details.height;
-      item.types = details.types;
-    }).catch(function (e) {
+    .catch(function(e){
       console.error(e);
     });
   }
-   function showDetails(pokemon) {
-    loadDetails(pokemon).then(function () {
-      showModal(pokemon.name, 'Height:' + pokemon.height, pokemon.imageUrl);
-    });
+  //Defining the content in the showDetails function which will be triggered
+  // when the seeProfile btn is click
+  function loadDetails(item) {
+    let url= pokemon.detailsUrl;
+    return $.ajax(url).then(function(details){
+      pokemon.imageUrlFront = details.sprites.front_default;
+      pokemon.imageUrlBack = details.sprites.back_default;
+      pokemon.height = details.height;
+      //loops to show each type and abilities
+      item.types[];
+      details.types.forEach(function(i){
+        item.types.push(i.type.name);
+      //for (let i = 0; i< details.types.length; i++) {
+      //pokemon.types.push(details.types[i].type.name);
+      });
+
+      pokemon.abilities[];
+      details.abilities.forEach(function(i){
+        details.abilities.push(i.abilities.name);
+      }
+
+      pokemon.weight= details.weight;
+    })
+      .catch(function(e){
+        console.error(e);
+      });
   } 
   //function to show modal with poke details
-  function showModal(title,text,img_src){
-    let modalContainer = document.querySelector('#modal-container');
-    //clear old content
-    modalContainer.innerText = '';
+  function showModal(pokemon){
+    let modalBody = $('.modal-body');
+    let modalTitle = $('.modal-title');
+    let modalHeader = $('.modal-header');
+    //clear existing content
+    modalTitle.empty();
+    modalBody.empty();
+    //creating element for name in modal content
+    let nameElement = $('<h1>' + pokemone.name + '</h1>');
+    //creating img for modal content
+    let imgageElementFront = $('<img class = "modal-img" style = "width:50%">');
+    imgageElementFront.attr("src", pokemon.imageUrlFront);
+    //creating height element for modal content
+    let heightElement = $('<p>' + 'Height: ' + pokemon.height + '</p>');
+    //creating weight element for modal content
+    let weigthElement = $('<p>' + 'Weight: ' + pokemon.weight + '</p>');
+    //creating abilities element for modal content
+    let abilitiesElement = $('<p>' + 'Abilities: ' + pokemon.abilities + '</p>');
 
-    let modal = document.createElement('div');
-    modal.classList.add('modal');
+    modalTitle.append(nameElement);
+    modalBody.append(imgageElementFront);
+    modalBody.append(heightElement);
+    modalBody.append(weigthElement);
+    modalBody.append(abilitiesElement);
 
-    //adding new content to modal
-    let closeButtonElement = document.createElement('button');
-    closeButtonElement.classList.add('modal-close');
-    closeButtonElement.innerText = 'Close';
-
-    //hide modal when closeButton clicked
-    closeButtonElement.addEventListener('click', hideModal);
-
-    let modalTitle = document.createElement('h1');
-    modalTitle.innerText = title;
-
-    let modalContent = document.createElement('p');
-    modalContent.innerText = text;
-
-    let modalImg = document.createElement('img');
-    modalImg.classList.add('modal-img');
-    modalImg.src = img_src;
-
-    modal.appendChild(closeButtonElement);
-    modal.appendChild(modalTitle);
-    modal.appendChild(modalContent);
-    modal.appendChild(modalImg);
-    modalContainer.appendChild(modal);
-    //
-    modalContainer.classList.add('is-visible');
-    //close modal when user clicks outside of window
-    modalContainer.addEventListener('click', (e) => {
-      let target = e.target;
-      if (target === modalContainer){
-        hideModal();
-      }
-    });  
   }
 
   //function to hid modal until it is selected
@@ -141,10 +143,11 @@ let pokemonRepository = (function () {
   return{
     add: add,
     getAll: getAll,
-    searchPokemon: searchPokemon,
     addListItem: addListItem,
     loadList: loadList,
-    loadDetails: loadDetails
+    loadDetails: loadDetails,
+    showModal: showModal,
+    showDetails: showDetails
   };
 })();
 
