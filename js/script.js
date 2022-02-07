@@ -26,9 +26,9 @@ let pokemonRepository = (function () {
      let $card = $('<div class= "card" style= "width:30%"></div>');
      let $image = $('<img class="card-img-top" alt="Card image" style="width:20%" />');
     
-    $image.attr=("src", pokemon.imageUrlFront);
-      let $cardBody = $('<div class= "card-boy"></div>')
-      let $cardTitle = $('<h4> class="card-title"> + pokemon.name + </h4>');
+    $image.attr("src", pokemon.imageUrlFront);
+      let $cardBody = $('<div class= "card-body"></div>')
+      let $cardTitle = $('<h4 class="card-title">'+ pokemon.name + '</h4>');
       let $seeProfile = $('<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">See Profile</button>');
      
      //creating a card for each pokemon
@@ -106,7 +106,7 @@ let pokemonRepository = (function () {
     modalTitle.empty();
     modalBody.empty();
     //creating element for name in modal content
-    let nameElement = $('<h1>' + pokemone.name + '</h1>');
+    let nameElement = $('<h1>' + pokemon.name + '</h1>');
     //creating img for modal content
     let imgageElementFront = $('<img class = "modal-img" style = "width:50%">');
     imgageElementFront.attr("src", pokemon.imageUrlFront);
