@@ -79,19 +79,20 @@ let pokemonRepository = (function () {
       pokemon.imageUrlFront = details.sprites.front_default;
       pokemon.imageUrlBack = details.sprites.back_default;
       pokemon.height = details.height;
+      pokemon.weight= details.weight;
       //loops to show each type and abilities
       pokemon.types=[];
-      details.types.forEach(function(i){
-        pokemon.types.push(i.type.name);
-      //for (let i = 0; i< details.types.length; i++) {
-      //pokemon.types.push(details.types[i].type.name);
-      });
+      // details.types.forEach(function(i){
+      //   pokemon.types.push(i.type.name);
+      for (let i = 0; i< details.types.length; i++) {
+      pokemon.types.push(details.types[i].type.name);
+      }
 
       pokemon.abilities=[];
       for (let i = 0; i< details.abilities.length; i++) {
-        pokemon.types.push(details.abilities[i].type.name);
+        pokemon.abilities.push(details.abilities[i].type.name);
       }
-      pokemon.weight= details.weight;
+      
     })
       .catch(function(e){
         console.error(e);
@@ -113,7 +114,7 @@ let pokemonRepository = (function () {
     //creating height element for modal content
     let heightElement = $('<p>' + 'Height: ' + pokemon.height + '</p>');
     //creating weight element for modal content
-    let weigthElement = $('<p>' + 'Weight: ' + pokemon.weight + '</p>');
+    let weightElement = $('<p>' + 'Weight: ' + pokemon.weight + '</p>');
     //creating abilities element for modal content
     let abilitiesElement = $('<p>' + 'Abilities: ' + pokemon.abilities + '</p>');
 
@@ -121,7 +122,7 @@ let pokemonRepository = (function () {
     modalBody.append(imgageElementFront);
     modalBody.append(heightElement);
     modalBody.append(types)
-    modalBody.append(weigthElement);
+    modalBody.append(weightElement);
     modalBody.append(abilitiesElement);
 
   }
