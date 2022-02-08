@@ -137,6 +137,17 @@ let pokemonRepository = (function () {
       hideModal();
     }
   });
+
+  //document.ready function to search for pokemon
+  $(document).ready(function(){
+    $("#searchBar").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $(".button-class").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+
  
   // the returns for each function in the IIFE
   return{
