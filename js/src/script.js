@@ -120,6 +120,7 @@ let pokemonRepository = (function () {
     modalTitle.append(nameElement);
     modalBody.append(imgageElementFront);
     modalBody.append(heightElement);
+    modalBody.append(types)
     modalBody.append(weigthElement);
     modalBody.append(abilitiesElement);
 
@@ -144,6 +145,8 @@ let pokemonRepository = (function () {
       var value = $(this).val().toLowerCase();
       $(".button-class").filter(function() {
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+
+
       });
     });
   });
