@@ -85,12 +85,12 @@ let pokemonRepository = (function () {
       // details.types.forEach(function(i){
       //   pokemon.types.push(i.type.name);
       for (let i = 0; i< details.types.length; i++) {
-      pokemon.types.push(details.types[i].type.name);
+         pokemon.types.push(details.types[i].type.name);
       }
 
       pokemon.abilities=[];
       for (let i = 0; i< details.abilities.length; i++) {
-        pokemon.abilities.push(details.abilities[i].type.name);
+        pokemon.abilities.push(details.abilities[i].ability.name);
       }
       
     })
@@ -117,13 +117,15 @@ let pokemonRepository = (function () {
     let weightElement = $('<p>' + 'Weight: ' + pokemon.weight + '</p>');
     //creating abilities element for modal content
     let abilitiesElement = $('<p>' + 'Abilities: ' + pokemon.abilities + '</p>');
+    //creating types element
+    let typesElement = $('<p>' + 'Types: ' + pokemon.types + '</p>');
 
     modalTitle.append(nameElement);
     modalBody.append(imgageElementFront);
     modalBody.append(heightElement);
-    modalBody.append(types)
     modalBody.append(weightElement);
     modalBody.append(abilitiesElement);
+    modalBody.append(typesElement);
 
   }
 
@@ -139,19 +141,6 @@ let pokemonRepository = (function () {
       hideModal();
     }
   });
-
-  //document.ready function to search for pokemon
-  $(document).ready(function(){
-    $("#searchBar").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $(".button-class").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-
-
-      });
-    });
-  });
-
  
   // the returns for each function in the IIFE
   return{
