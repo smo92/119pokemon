@@ -53,7 +53,7 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 24px;
   margin: 4px 2px;
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
@@ -101,7 +101,7 @@ body {
 
 .btn {
   font-family: "Roboto", sans-serif;
-  font-size: 10px;
+  font-size: 18px;
   color: var(--color-blue);
   text-transform: capitalize;
   background-color: var(--color-yellow);
@@ -122,6 +122,11 @@ body {
   transition: transform 125ms;
   transform: translateY(-10px);
 }
+
+/*button.btn.btn-primary {
+  font-size: 24px;
+}
+*/
 
 button.btn.btn-secondary {
   background-color: var(--color-yellow);
